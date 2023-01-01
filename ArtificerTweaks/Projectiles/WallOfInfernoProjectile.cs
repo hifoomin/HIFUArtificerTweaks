@@ -15,7 +15,7 @@ namespace HIFUArtificerTweaks.Projectiles
 
         public static void Create()
         {
-            prefab = PrefabAPI.InstantiateClone(Addressables.LoadAssetAsync<GameObject>("RoR2/Base/ElementalRings/FireTornado.prefab").WaitForCompletion(), "WallOfInfernoPillar");
+            prefab = PrefabAPI.InstantiateClone(Addressables.LoadAssetAsync<GameObject>("RoR2/Base/ElementalRings/FireTornado.prefab").WaitForCompletion(), "WallOfInfernoPillar", false);
             prefab.transform.eulerAngles = new Vector3(0, 0, 90);
 
             Object.Destroy(prefab.GetComponent<SphereCollider>());

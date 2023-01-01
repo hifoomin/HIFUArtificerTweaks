@@ -24,7 +24,7 @@ namespace HIFUArtificerTweaks.Skilldefs
             sd = ScriptableObject.CreateInstance<SkillDef>();
             sd.activationState = new(typeof(WallOfInfernoState));
             sd.activationStateMachineName = "Wall";
-            sd.interruptPriority = EntityStates.InterruptPriority.PrioritySkill;
+            sd.interruptPriority = EntityStates.InterruptPriority.Skill;
 
             sd.baseRechargeInterval = 12f;
             sd.baseMaxStock = 1;
@@ -39,7 +39,7 @@ namespace HIFUArtificerTweaks.Skilldefs
             sd.cancelSprintingOnActivation = false;
             sd.canceledFromSprinting = false;
             sd.isCombatSkill = true;
-            sd.mustKeyPress = true;
+            sd.mustKeyPress = false;
 
             sd.icon = Main.hifuartificertweaks.LoadAsset<Sprite>("Assets/Flamewall.png");
             sd.skillNameToken = nameToken;

@@ -24,7 +24,7 @@ namespace HAT
 
         public const string PluginAuthor = "HIFU";
         public const string PluginName = "HIFUArtificerTweaks";
-        public const string PluginVersion = "1.0.2";
+        public const string PluginVersion = "1.0.4";
 
         public static ConfigFile HATConfig;
         public static ManualLogSource HATLogger;
@@ -44,7 +44,7 @@ namespace HAT
 
             hifuartificertweaks = AssetBundle.LoadFromFile(Assembly.GetExecutingAssembly().Location.Replace("HIFUArtificerTweaks.dll", "hifuartificertweaks"));
 
-            flamewallDamage = Config.Bind(": Utility :: Flamewall", "Damage", 0.7f, "Decimal. Default is 0.7");
+            flamewallDamage = Config.Bind(": Utility :: Flamewall", "Damage", 0.65f, "Decimal. Default is 0.65");
             flamewallSpeed = Config.Bind(": Utility :: Flamewall", "Speed Multiplier", 1.3f, "Default is 1.3");
             flamewallProcCoeff = Config.Bind(": Utility :: Flamewall", "Proc Coefficient", 0.15f, "Default is 0.15");
 
