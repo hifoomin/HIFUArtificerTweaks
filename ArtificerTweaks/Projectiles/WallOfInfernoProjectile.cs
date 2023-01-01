@@ -15,7 +15,7 @@ namespace HIFUArtificerTweaks.Projectiles
 
         public static void Create()
         {
-            prefab = PrefabAPI.InstantiateClone(Addressables.LoadAssetAsync<GameObject>("RoR2/Base/ElementalRings/FireTornado.prefab").WaitForCompletion(), "WallOfInfernoPillar", false);
+            prefab = PrefabAPI.InstantiateClone(Addressables.LoadAssetAsync<GameObject>("RoR2/Base/ElementalRings/FireTornado.prefab").WaitForCompletion(), "WallOfInfernoPillar");
             prefab.transform.eulerAngles = new Vector3(0, 0, 90);
 
             Object.Destroy(prefab.GetComponent<SphereCollider>());
@@ -63,7 +63,7 @@ namespace HIFUArtificerTweaks.Projectiles
             overlap.overlapProcCoefficient = procCoeff;
 
             ProjectileController projectileController = prefab.GetComponent<ProjectileController>();
-            GameObject ghostPrefab = PrefabAPI.InstantiateClone(Addressables.LoadAssetAsync<GameObject>("RoR2/Base/Mage/MageFlamethrowerEffect.prefab").WaitForCompletion(), "WallOfInfernoPillarGhost");
+            GameObject ghostPrefab = PrefabAPI.InstantiateClone(Addressables.LoadAssetAsync<GameObject>("RoR2/Base/Mage/MageFlamethrowerEffect.prefab").WaitForCompletion(), "WallOfInfernoPillarGhost", false);
             ghostPrefab.transform.localScale = new Vector3(1f, 1f, 0.5f);
             ghostPrefab.transform.eulerAngles = new Vector3(0, 0, 90);
             ghostPrefab.GetComponent<DestroyOnTimer>().duration = 7f;
