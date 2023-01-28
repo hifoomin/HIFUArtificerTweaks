@@ -40,6 +40,9 @@ namespace HAT.Skills
             var projectileCharacterController = iceWall.GetComponent<ProjectileCharacterController>();
 
             projectileCharacterController.lifetime = lifetime;
+
+            var icePillar = Addressables.LoadAssetAsync<GameObject>("RoR2/Base/Mage/MageIcewallPillarProjectile.prefab").WaitForCompletion();
+            icePillar.layer = RoR2.LayerIndex.world.intVal;
         }
     }
 }
