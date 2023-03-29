@@ -63,39 +63,28 @@ namespace HIFUArtificerTweaks.Projectiles
             overlap.overlapProcCoefficient = procCoeff;
 
             ProjectileController projectileController = prefab.GetComponent<ProjectileController>();
-            GameObject ghostPrefab = PrefabAPI.InstantiateClone(Addressables.LoadAssetAsync<GameObject>("RoR2/Base/Mage/MageFlamethrowerEffect.prefab").WaitForCompletion(), "WallOfInfernoPillarGhost", false);
-            ghostPrefab.transform.localScale = new Vector3(1f, 1f, 0.5f);
+            GameObject ghostPrefab = PrefabAPI.InstantiateClone(Addressables.LoadAssetAsync<GameObject>("RoR2/Junk/Mage/MageFirePillarGhost.prefab").WaitForCompletion(), "WallOfInfernoPillarGhost", false);
+            // Main.HATLogger.LogError("ghost prefab is " + ghostPrefab);
+
+            var pillar = ghostPrefab.transform.GetChild(0);
+            pillar.localScale = new Vector3(2.5f, 4f, 2.5f);
+
+            var pillarParticleSystem = pillar.GetComponent<ParticleSystem>();
+
+            var pillarVelocity = pillarParticleSystem.velocityOverLifetime;
+            pillarVelocity.speedModifier = 0.5f;
+
+            var gradient = new Gradient();
+            gradient.SetKeys(
+                new GradientColorKey[] { new GradientColorKey(Color.white, 0f), new GradientColorKey(Color.white, 1.0f) },
+                new GradientAlphaKey[] { new GradientAlphaKey(0f, 0.0f), new GradientAlphaKey(1f, 0.7f), new GradientAlphaKey(1f, 0.9f), new GradientAlphaKey(0f, 1.0f) });
+
+            var pillarColor = pillarParticleSystem.colorOverLifetime;
+            pillarColor.color = gradient;
+
             ghostPrefab.transform.eulerAngles = new Vector3(0, 0, 90);
-            ghostPrefab.GetComponent<DestroyOnTimer>().duration = 7f;
-            ghostPrefab.AddComponent<ProjectileGhostController>();
-            ghostPrefab.GetComponent<ScaleParticleSystemDuration>().initialDuration = 7f;
-            ghostPrefab.GetComponent<DynamicBone>().m_UpdateRate = 7f;
-
-            var bone1 = ghostPrefab.transform.GetChild(0);
-            var matrix = ghostPrefab.transform.GetChild(1);
-            var ico = ghostPrefab.transform.GetChild(2);
-            var bb = ghostPrefab.transform.GetChild(3);
-            bb.gameObject.SetActive(false);
-
-            var matrixMain = matrix.GetComponent<ParticleSystem>().main;
-            matrixMain.duration = 6.4f;
-            matrixMain.scalingMode = ParticleSystemScalingMode.Hierarchy;
-            matrix.localScale = new Vector3(3f, 3f, 3f);
-
-            var icoMain = ico.GetComponent<ParticleSystem>().main;
-            icoMain.duration = 7f;
-            icoMain.scalingMode = ParticleSystemScalingMode.Hierarchy;
-            ico.localScale = new Vector3(3f, 3f, 3f);
-
-            bone1.transform.localScale = new Vector3(1f, 1f, 2f);
-            var lr = bone1.GetComponent<LineRenderer>();
-            lr.widthMultiplier = 10f;
-
-            var curve = new AnimationCurve(new Keyframe(0, 0), new Keyframe(0.15f, 1), new Keyframe(0.95f, 1), new Keyframe(1f, 0));
-
-            var asa = bone1.GetComponent<AnimateShaderAlpha>();
-            asa.alphaCurve = curve;
-            asa.timeMax = 7f;
+            var destroyOnTimer = ghostPrefab.AddComponent<DestroyOnTimer>();
+            destroyOnTimer.duration = 7f;
 
             projectileController.ghostPrefab = ghostPrefab;
 
