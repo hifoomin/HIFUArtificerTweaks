@@ -4,7 +4,6 @@ using RoR2.Skills;
 using HIFUArtificerTweaks.Skills;
 using UnityEngine.AddressableAssets;
 using RoR2;
-using HAT;
 
 namespace HIFUArtificerTweaks.Skilldefs
 {

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace HAT
+namespace HIFUArtificerTweaks
 {
     public abstract class MiscBase<T> : MiscBase where T : MiscBase<T>
     {

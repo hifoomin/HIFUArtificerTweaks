@@ -6,7 +6,7 @@ using System;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 
-namespace HAT.Skills
+namespace HIFUArtificerTweaks.Skills
 {
     public class IonSurge : TweakBase
     {

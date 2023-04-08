@@ -1,7 +1,6 @@
 using BepInEx;
 using BepInEx.Configuration;
 using BepInEx.Logging;
-using HIFUArtificerTweaks;
 using HIFUArtificerTweaks.Projectiles;
 using HIFUArtificerTweaks.Skilldefs;
 using R2API;
@@ -12,7 +11,7 @@ using System.Linq;
 using System.Reflection;
 using UnityEngine;
 
-namespace HAT
+namespace HIFUArtificerTweaks
 {
     [BepInDependency(LanguageAPI.PluginGUID)]
     [BepInDependency(PrefabAPI.PluginGUID)]
@@ -24,7 +23,7 @@ namespace HAT
 
         public const string PluginAuthor = "HIFU";
         public const string PluginName = "HIFUArtificerTweaks";
-        public const string PluginVersion = "1.1.0";
+        public const string PluginVersion = "1.1.1";
 
         public static ConfigFile HATConfig;
         public static ManualLogSource HATLogger;

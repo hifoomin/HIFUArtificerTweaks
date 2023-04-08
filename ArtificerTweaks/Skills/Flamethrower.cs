@@ -1,4 +1,4 @@
-﻿namespace HAT.Skills
+﻿namespace HIFUArtificerTweaks.Skills
 {
     public class Flamethrower : TweakBase
     {

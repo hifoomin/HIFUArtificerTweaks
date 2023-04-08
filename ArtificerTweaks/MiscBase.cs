@@ -1,4 +1,4 @@
-﻿namespace HAT
+﻿namespace HIFUArtificerTweaks
 {
     public abstract class MiscBase
     {

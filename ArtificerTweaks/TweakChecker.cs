@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace HAT
+namespace HIFUArtificerTweaks
 {
     public abstract class TweakBase<T> : TweakBase where T : TweakBase<T>
     {

@@ -1,5 +1,4 @@
 ﻿using EntityStates;
-using HAT;
 using HIFUArtificerTweaks.Projectiles;
 using RoR2;
 using RoR2.Projectile;

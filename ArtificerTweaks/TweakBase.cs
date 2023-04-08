@@ -1,6 +1,6 @@
 ﻿using R2API;
 
-namespace HAT
+namespace HIFUArtificerTweaks
 {
     public abstract class TweakBase
     {

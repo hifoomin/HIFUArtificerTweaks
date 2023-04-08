@@ -2,7 +2,7 @@
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 
-namespace HAT.Skills
+namespace HIFUArtificerTweaks.Skills
 {
     public class Snapfreeze : TweakBase
     {
