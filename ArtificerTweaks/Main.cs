@@ -3,13 +3,13 @@ using BepInEx.Configuration;
 using BepInEx.Logging;
 using HIFUArtificerTweaks.Projectiles;
 using HIFUArtificerTweaks.Skilldefs;
-using R2API;
-using R2API.ContentManagement;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using UnityEngine;
+using R2API;
+using R2API.ContentManagement;
 
 namespace HIFUArtificerTweaks
 {
@@ -23,7 +23,7 @@ namespace HIFUArtificerTweaks
 
         public const string PluginAuthor = "HIFU";
         public const string PluginName = "HIFUArtificerTweaks";
-        public const string PluginVersion = "1.1.1";
+        public const string PluginVersion = "1.1.2";
 
         public static ConfigFile HATConfig;
         public static ManualLogSource HATLogger;
