@@ -119,7 +119,6 @@ namespace HIFUArtificerTweaks.Skills
             if (!outer.destroying && characterBody)
             {
                 PlayAnimation("Gesture, Additive", "FireWall");
-                characterBody.isSprinting = false;
             }
             if (characterMotor && !characterMotor.disableAirControlUntilCollision)
             {
