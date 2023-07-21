@@ -7,7 +7,9 @@
 
         public T ConfigOption<T>(T value, string name, string description)
         {
-            return Main.HATConfig.Bind<T>(Name, name, value, description).Value;
+            var config = Main.HATConfig.Bind<T>(Name, name, value, description);
+            ConfigManager.HandleConfig<T>(config, Main.HATBackupConfig, name);
+            return config.Value;
         }
 
         public abstract void Hooks();
