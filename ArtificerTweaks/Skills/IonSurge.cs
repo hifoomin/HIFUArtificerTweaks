@@ -14,6 +14,8 @@ namespace HIFUArtificerTweaks.Skills
         public static float Cooldown;
         public static float Damage;
         public static float dashSpeed;
+        public static float Duration;
+        public static bool ScaleWithSpeed;
 
         public override string Name => ": Special :: Ion Surge";
 
@@ -27,13 +29,16 @@ namespace HIFUArtificerTweaks.Skills
             Cooldown = ConfigOption(5f, "Cooldown", "Vanilla is 8");
             Damage = ConfigOption(8f, "Damage", "Decimal. Vanilla is 8");
             dashSpeed = ConfigOption(3.5f, "Dash Speed Multiplier", "Default is 3.5");
+            Duration = ConfigOption(0.3f, "Duration", "This affects height. Vanilla is 1.66");
+            ScaleWithSpeed = ConfigOption(false, "Make Height scale with Movement Speed?", "Vanilla is true");
             base.Init();
         }
 
         public override void Hooks()
         {
             On.EntityStates.Mage.FlyUpState.OnEnter += FlyUpState_OnEnter;
-            // IL.EntityStates.Mage.FlyUpState.HandleMovements += FlyUpState_HandleMovements;
+            if (!ScaleWithSpeed)
+                IL.EntityStates.Mage.FlyUpState.HandleMovements += FlyUpState_HandleMovements;
             Changes();
         }
 
@@ -41,12 +46,10 @@ namespace HIFUArtificerTweaks.Skills
         {
             ILCursor c = new(il);
             if (c.TryGotoNext(MoveType.Before,
-                x => x.MatchLdarg(0),
                 x => x.MatchLdfld<BaseState>("moveSpeedStat")))
             {
                 c.Index++;
-                c.Emit(OpCodes.Ldarg_0);
-                c.EmitDelegate<Func<float>>(() =>
+                c.EmitDelegate<Func<float, float>>((orig) =>
                 {
                     return 10.15f;
                 });
@@ -61,7 +64,7 @@ namespace HIFUArtificerTweaks.Skills
         {
             EntityStates.Mage.FlyUpState.blastAttackRadius = AoE;
             EntityStates.Mage.FlyUpState.blastAttackDamageCoefficient = Damage;
-            EntityStates.Mage.FlyUpState.duration = 0.3f;
+            EntityStates.Mage.FlyUpState.duration = Duration;
             orig(self);
             if (self.isAuthority)
             {

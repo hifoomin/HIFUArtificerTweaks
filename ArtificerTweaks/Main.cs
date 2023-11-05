@@ -24,7 +24,7 @@ namespace HIFUArtificerTweaks
 
         public const string PluginAuthor = "HIFU";
         public const string PluginName = "HIFUArtificerTweaks";
-        public const string PluginVersion = "1.1.4";
+        public const string PluginVersion = "1.1.5";
 
         public static ConfigFile HATConfig;
         public static ConfigFile HATBackupConfig;
