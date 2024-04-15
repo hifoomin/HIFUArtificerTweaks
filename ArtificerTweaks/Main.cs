@@ -17,6 +17,7 @@ namespace HIFUArtificerTweaks
     [BepInDependency(LanguageAPI.PluginGUID)]
     [BepInDependency(PrefabAPI.PluginGUID)]
     [BepInDependency(R2APIContentManager.PluginGUID)]
+    [BepInDependency("com.Borbo.ArtificerExtended", BepInDependency.DependencyFlags.SoftDependency)]
     [BepInPlugin(PluginGUID, PluginName, PluginVersion)]
     public class Main : BaseUnityPlugin
     {
@@ -24,10 +25,11 @@ namespace HIFUArtificerTweaks
 
         public const string PluginAuthor = "HIFU";
         public const string PluginName = "HIFUArtificerTweaks";
-        public const string PluginVersion = "1.1.5";
+        public const string PluginVersion = "1.1.6";
 
         public static ConfigFile HATConfig;
         public static ConfigFile HATBackupConfig;
+        public static bool aeLoaded;
 
         public static ConfigEntry<bool> enableAutoConfig { get; set; }
         public static ConfigEntry<string> latestVersion { get; set; }
@@ -46,6 +48,8 @@ namespace HIFUArtificerTweaks
         {
             HATLogger = Logger;
             HATConfig = Config;
+
+            aeLoaded = BepInEx.Bootstrap.Chainloader.PluginInfos.ContainsKey("com.Borbo.ArtificerExtended");
 
             hifuartificertweaks = AssetBundle.LoadFromFile(Assembly.GetExecutingAssembly().Location.Replace("HIFUArtificerTweaks.dll", "hifuartificertweaks"));
 
@@ -67,7 +71,7 @@ namespace HIFUArtificerTweaks
             flamewallProcCoeff = Config.Bind(": Utility :: Flamewall", "Proc Coefficient", 0.15f, "Default is 0.15");
 
             WallOfInfernoProjectile.Create();
-            WallOfInfernoSD.Create();
+            FlamewallSD.Create();
             AddUtility.Create();
 
             IEnumerable<Type> enumerable = from type in Assembly.GetExecutingAssembly().GetTypes()

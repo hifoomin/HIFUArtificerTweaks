@@ -7,10 +7,10 @@ using RoR2;
 
 namespace HIFUArtificerTweaks.Skilldefs
 {
-    public static class WallOfInfernoSD
+    public static class FlamewallSD
     {
         public static SkillDef sd;
-        public static string nameToken = "HAT_MAGE_UTILITY_FIRE_NAME";
+        public static string nameToken = "HAT_UTILITY_FIRE_NAME";
 
         public static void Create()
         {
@@ -21,7 +21,7 @@ namespace HIFUArtificerTweaks.Skilldefs
             esm.mainStateType = new(typeof(EntityStates.Idle));
 
             sd = ScriptableObject.CreateInstance<SkillDef>();
-            sd.activationState = new(typeof(WallOfInfernoState));
+            sd.activationState = new(typeof(FlamewallState));
             sd.activationStateMachineName = "Wall";
             sd.interruptPriority = EntityStates.InterruptPriority.Skill;
 
@@ -42,11 +42,11 @@ namespace HIFUArtificerTweaks.Skilldefs
 
             sd.icon = Main.hifuartificertweaks.LoadAsset<Sprite>("Assets/Flamewall.png");
             sd.skillNameToken = nameToken;
-            sd.skillDescriptionToken = "HAT_MAGE_UTILITY_FIRE_DESCRIPTION";
+            sd.skillDescriptionToken = "HAT_UTILITY_FIRE_DESCRIPTION";
             sd.keywordTokens = new string[] { "KEYWORD_IGNITE", "KEYWORD_AGILE" };
 
-            LanguageAPI.Add("HAT_MAGE_UTILITY_FIRE_NAME", "Flamewall");
-            LanguageAPI.Add("HAT_MAGE_UTILITY_FIRE_DESCRIPTION", "<style=cIsUtility>Agile</style>. <style=cIsDamage>Ignite</style>. Rush forward, summoning pillars of fire in your wake that deal <style=cIsDamage>" + (Main.flamewallDamage.Value * 100) + "% damage per second</style>.");
+            LanguageAPI.Add("HAT_UTILITY_FIRE_NAME", "Flamewall");
+            LanguageAPI.Add("HAT_UTILITY_FIRE_DESCRIPTION", "<style=cIsUtility>Agile</style>. <style=cIsDamage>Ignite</style>. Rush forward, summoning pillars of fire in your wake that deal <style=cIsDamage>" + (Main.flamewallDamage.Value * 100) + "% damage per second</style>.");
             ContentAddition.AddSkillDef(sd);
         }
     }

@@ -1,12 +1,14 @@
-﻿using EntityStates;
+﻿using ArtificerExtended.Passive;
+using EntityStates;
 using HIFUArtificerTweaks.Projectiles;
 using RoR2;
 using RoR2.Projectile;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 
 namespace HIFUArtificerTweaks.Skills
 {
-    public class WallOfInfernoState : BaseSkillState
+    public class FlamewallState : BaseSkillState
     {
         public float duration = 2f;
         public float timer;
@@ -40,10 +42,23 @@ namespace HIFUArtificerTweaks.Skills
 
             if (modelLocator) modelLocator.normalizeToFloor = true;
             if (characterDirection) characterDirection.forward = idealDirection;
-
+            if (Main.aeLoaded)
+            {
+                SkillCast();
+            }
             characterBody.SetAimTimer(duration + 1f);
             PlayAnimation("Gesture, Additive", "PrepWall", "PrepWall.playbackRate", duration);
             AkSoundEngine.PostEvent(2855368448, gameObject); // Play_item_use_fireballDash_start
+        }
+
+        [MethodImpl(MethodImplOptions.NoInlining | MethodImplOptions.NoOptimization)]
+        public void SkillCast()
+        {
+            GameObject obj = base.outer.gameObject;
+            if (AltArtiPassive.instanceLookup.TryGetValue(obj, out var passive))
+            {
+                passive.SkillCast();
+            }
         }
 
         private void UpdateDirection()

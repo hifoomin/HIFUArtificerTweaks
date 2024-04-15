@@ -18,9 +18,9 @@ namespace HIFUArtificerTweaks
             Array.Resize(ref skillFamily.variants, skillFamily.variants.Length + 1);
             skillFamily.variants[skillFamily.variants.Length - 1] = new SkillFamily.Variant
             {
-                skillDef = WallOfInfernoSD.sd,
+                skillDef = FlamewallSD.sd,
                 unlockableName = "",
-                viewableNode = new ViewablesCatalog.Node(WallOfInfernoSD.nameToken, false, null)
+                viewableNode = new ViewablesCatalog.Node(FlamewallSD.nameToken, false, null)
             };
         }
     }
