@@ -48,7 +48,7 @@ namespace HIFUArtificerTweaks.Skills
             }
             characterBody.SetAimTimer(duration + 1f);
             PlayAnimation("Gesture, Additive", "PrepWall", "PrepWall.playbackRate", duration);
-            AkSoundEngine.PostEvent(2855368448, gameObject); // Play_item_use_fireballDash_start
+            Util.PlaySound("Play_item_use_fireballDash_start", gameObject);
         }
 
         [MethodImpl(MethodImplOptions.NoInlining | MethodImplOptions.NoOptimization)]
@@ -151,7 +151,7 @@ namespace HIFUArtificerTweaks.Skills
                     sl.special.skillDef.cancelSprintingOnActivation = true;
                 }
             }
-            AkSoundEngine.PostEvent(561188827, gameObject); // Play_item_use_fireballDash_explode
+            Util.PlaySound("Play_item_use_fireballDash_explode", gameObject);
         }
 
         public override InterruptPriority GetMinimumInterruptPriority()
